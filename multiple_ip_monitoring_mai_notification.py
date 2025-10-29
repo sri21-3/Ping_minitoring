@@ -21,7 +21,7 @@ def mail(ip, body, result):
     message['To'] = reciepient 
     message['subject'] = "{} is {}".format(ip, result)
     message.set_content(body)
-    mail_server = smtplib.SMTP("192.168.0.3")
+    mail_server = smtplib.SMTP("")                           # ADD server address 
     mail_server.login(sender,'password')                     #change your password as per your mail server or pass it as environment variable for security
     mail_server.set_debuglevel(1)
     mail_server.send_message(message)
@@ -77,7 +77,7 @@ def log_file_generator(ip,up,down,duration):
     print(f"added result to {name}")
 
 #appending ip's to be monitores to a list
-ip_s = ["10.100.10.1","10.100.10.105","10.100.10.107"]
+ip_s = ["10.100.10.1","10.100.10.105","10.100.10.107"]              # Example ip's
 
 #using a dictionary to keep track of previous value
 previous_value= {ip: None for ip in ip_s}
@@ -143,4 +143,5 @@ if __name__ == "__main__":
     for ip in ip_s:
         executor = Thread(target=Ping_monitor, args=(ip,))
         executor.start()
+
 
